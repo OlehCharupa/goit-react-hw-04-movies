@@ -22,9 +22,9 @@ class HomePage extends Component {
         const { match } = this.props
         const { params } = this.props
         const { location } = this.props
-        console.log(match);
-        console.log(params);
-        console.log(location);
+        // console.log(match);
+        // console.log(params);
+        // console.log(location);
         // console.log(films);
         return (
             <>
@@ -34,9 +34,14 @@ class HomePage extends Component {
                     {films.map(film =>
                         <li key={film.id}>
                             <Link to={{
-                                pathname: `/movies/:moviesId`,
-                                state: { from: `${match.path}` },
+                                pathname: `/movies/${film.id}`,
+                                state: {
+                                    from: `${match.path}`,
+                                    id: `${film.id}`
+                                },
                             }}>
+                                <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt={film.title} width="250px" />
+
                                 <h3>{film.title}</h3>
                             </Link>
                         </li>)}
