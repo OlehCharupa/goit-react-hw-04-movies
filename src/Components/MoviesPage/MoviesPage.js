@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Component } from 'react';
 import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 import { searchMovies, popularMovies } from '../../helpers/helpers';
-
+import "./MoviesPage.css"
 
 class MoviesPage extends Component {
     state = {
@@ -43,8 +43,7 @@ class MoviesPage extends Component {
         const { films, query } = this.state
         const { match } = this.props
         return (
-            <div>
-                <h1>MoviesPage</h1>
+            <div className="container">
                 <form className="SearchForm"
                     onSubmit={this.onSubmit}
                 >
@@ -62,9 +61,9 @@ class MoviesPage extends Component {
                         <span className="SearchForm-button-label">Search</span>
                     </button>
                 </form>
-                <ul>
+                <ul className="movies-list">
                     {films.map(film =>
-                        <li key={film.id} onClick={this.activeFilm}>
+                        <li key={film.id} className="movies-item" onClick={this.activeFilm}>
                             <Link to={{
                                 pathname: `/movies/${film.id}`,
                                 id: film.id,
@@ -73,8 +72,8 @@ class MoviesPage extends Component {
                                     search: `search=${query}`
                                 },
                             }}>
-                                <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt={film.title} />
-                                <h3 data-id={film.id}>{film.title}</h3>
+                                <img className="movies-poster" src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt={film.title} />
+                                <h3 className="movies-title" data-id={film.id}>{film.title}</h3>
                             </Link>
                         </li>)}
                 </ul>

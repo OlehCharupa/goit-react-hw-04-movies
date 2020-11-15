@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { popularMovies } from "../../helpers/helpers"
-import FilmsItem from '../FilmsItem/FilmsItem';
+import "./HomePage.css"
 
 class HomePage extends Component {
     state = {
@@ -22,17 +22,12 @@ class HomePage extends Component {
         const { match } = this.props
         const { params } = this.props
         const { location } = this.props
-        // console.log(match);
-        // console.log(params);
-        // console.log(location);
-        // console.log(films);
+
         return (
-            <>
-                <h1>HomePage</h1>
-                <ul>
-                    {/* {films.map(film => <FilmsItem {...film} key={film.id} />)} */}
+            <div className="container">
+                <ul className="movies-list">
                     {films.map(film =>
-                        <li key={film.id}>
+                        <li key={film.id} className="movies-item">
                             <Link to={{
                                 pathname: `/movies/${film.id}`,
                                 state: {
@@ -40,13 +35,13 @@ class HomePage extends Component {
                                     id: `${film.id}`
                                 },
                             }}>
-                                <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt={film.title} width="250px" />
+                                <img className="movies-poster" src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt={film.title} />
 
-                                <h3>{film.title}</h3>
+                                <h3 className="movies-title">{film.title}</h3>
                             </Link>
                         </li>)}
                 </ul>
-            </ >
+            </div >
         );
     }
 };

@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { movieCredits } from '../../helpers/helpers';
+import "./Cast.css"
 
 const Cast = ({ id, ...props }) => {
     const [actors, setActors] = useState([])
-    console.log('reviews', id);
     useEffect(() => {
         movieCredits(id).then(data => {
-            // console.log(data.data.cast);
             setActors(data.data.cast)
         })
     }, [])
     return (
-        <div>
-            <h1>Cast</h1>
-            <ul>
-                {actors.map(actor => <li key={actor.id}>{actor.name}</li>)}
+        <div className="cast_box">
+            <h1 className="cast_title">Cast</h1>
+            <ul className="cast_list">
+                {actors.map(actor => <li className="cast_item" key={actor.id}>
+                    <img className="cast_actor_photo" src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} alt={actor.name} />
+                    <h3 className="cast_actor_name">{actor.name}</h3>
+                </li>)}
             </ul>
         </div>
     );

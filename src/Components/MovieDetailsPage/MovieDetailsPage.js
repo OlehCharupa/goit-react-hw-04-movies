@@ -3,6 +3,7 @@ import { Link, Route, Switch, useHistory, useLocation, useRouteMatch } from 'rea
 import { moviesId } from '../../helpers/helpers';
 import Cast from '../Cast/Cast';
 import Reviews from '../Reviews/Reviews';
+import "./MovieDetailsPage.css"
 
 
 const MovieDetailsPage = () => {
@@ -33,13 +34,21 @@ const MovieDetailsPage = () => {
 
     }, [])
     return (
-        <div>
-            <button type="button" onClick={goBack}>Back</button>
+        <div className="container">
+            <button type="button" onClick={goBack} >Back</button>
             <hr />
-            <h1>
-                {`${film.title}`}
-            </h1>
-            <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt={`${film.title}`} />
+            <div className="det_box">
+                <img className="det_poster" src={`https://image.tmdb.org/t/p/w300${film.poster_path}` || `https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcThfniC93R4LVY3q47jnybdM21z-XuIsx2rMQ&usqp=CAU`} alt={`${film.title}`} />
+                <div className="det_box-in-box">
+                    <h1 className="det_box-in-box_title">
+                        {`${film.title}`}
+                    </h1>
+                    <p className="det_box-in-box_text">{film.overview}</p>
+
+
+                </div>
+
+            </div>
             <hr />
 
             <ul className="MP__list">
@@ -48,7 +57,7 @@ const MovieDetailsPage = () => {
             </ul>
             <hr />
             <Switch>
-                <Route path={`${match.url}/reviews`} component={Reviews}></Route>
+                <Route path={`${match.url}/reviews`} render={(props) => <Reviews {...props} id={id} />}></Route>
                 <Route path={`${match.url}/cast`} render={(props) => <Cast {...props} id={id} />}></Route>
             </Switch>
         </div>

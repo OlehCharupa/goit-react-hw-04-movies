@@ -40,4 +40,12 @@ export const movieCredits = (id) => {
         console.log(error.message);
     }
 }
+export const movieReviews = (id) => {
+    try {
+        const response = Axios.get(`${process.env.REACT_APP_BASE_URL}/movie/${id}/reviews?api_key=${process.env.REACT_APP_API_KEY}`)
+        return response
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 

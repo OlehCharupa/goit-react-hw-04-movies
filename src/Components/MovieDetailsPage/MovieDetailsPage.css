@@ -1,0 +1,7 @@
+.det_box {
+  display: flex;
+}
+.det_box-in-box {
+  margin-left: 30px;
+  padding: 15px;
+}
