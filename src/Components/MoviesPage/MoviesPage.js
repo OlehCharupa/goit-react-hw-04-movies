@@ -6,7 +6,7 @@ import "./MoviesPage.css"
 class MoviesPage extends Component {
     state = {
         films: [],
-        query: ""
+        query: "",
     }
     inputHeandler = ({ target }) => {
         this.setState({
@@ -17,7 +17,6 @@ class MoviesPage extends Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target.search.value);
         searchMovies(this.state.query).then(
             data => {
                 this.setState({
@@ -25,20 +24,28 @@ class MoviesPage extends Component {
                 })
             }
         )
+        this.props.history.push({
+            search: `search=${this.state.query}`
+        })
 
     }
-    // activeFilm = ({ target }) => {
-    //     const activId = target.dataset.id
-    // }
     componentDidMount() {
-        // popularMovies().then(data => {
-        //     this.setState({
-        //         films: data
-        //     })
-        // })
+        if (this.props.location.query) {
+            searchMovies(this.props.location.query).then(
+                data => {
+                    this.setState({
+                        films: data
+                    })
+                }
+            )
+            this.props.history.push({
+                search: `search=${this.props.location.query}`
+            })
+            this.setState({
+                query: this.props.location.query
+            })
+        }
     }
-    // componentDidUpdate(prevProps, prevState) {
-    // }
     render() {
         const { films, query } = this.state
         const { match } = this.props
@@ -69,7 +76,8 @@ class MoviesPage extends Component {
                                 id: film.id,
                                 state: {
                                     from: `${match.path}`,
-                                    search: `search=${query}`
+                                    search: `search=${query}`,
+                                    query
                                 },
                             }}>
                                 <img className="movies-poster" src={`https://image.tmdb.org/t/p/w500${film.poster_path}`} alt={film.title} />
@@ -77,91 +85,9 @@ class MoviesPage extends Component {
                             </Link>
                         </li>)}
                 </ul>
-                {/* <Link to={{
-                pathname: `/movies/cat`,
-                state: { from: `${match.path}` },
-            }}>переход на детальное описание фильма</Link> */}
             </div >
         );
     }
 }
 
 export default MoviesPage;
-
-
-
-// const MoviesPage = () => {
-//     const [search, useSearch] = useState("")
-//     const [films, setFilms] = useState([])
-//     const match = useRouteMatch()
-//     const location = useLocation()
-//     console.log('moviesPage', match);
-//     console.log('moviesPage: location', location);
-
-//     console.log(search);
-
-
-
-//     // const inputHeandler = ({ target }) => {
-//     //     location.search = target.value
-//     //     //  useSearch({
-//     //     //     search: target.value
-//     //     // })
-//     // }
-
-
-//     // const onSubmit = (e) => {
-//     //     e.preventDefault()
-//     //     searchMovies(search).then(
-
-//     //     )
-//     // }
-//     useEffect(() => {
-//         popularMovies().then(data => {
-//             setFilms({
-//                 films: data
-//             })
-//         })
-//     }, [])
-
-
-//     return (
-//         <div>
-//             <h1>MoviesPage</h1>
-//             <form className="SearchForm"
-//             // onSubmit={onSubmit}
-//             >
-//                 <input
-//                     // onChange={inputHeandler}
-//                     name="search"
-//                     value={search}
-//                     className="SearchForm-input"
-//                     type="text"
-//                     autoComplete="off"
-//                     autoFocus
-//                     placeholder="Search movies"
-//                 />
-//                 <button type="submit" className="SearchForm-button">
-//                     <span className="SearchForm-button-label">Search</span>
-//                 </button>
-//             </form>
-//             <ul>
-//                 {films.map(film =>
-//                     <li key={film.id}>
-//                         <Link to={{
-//                             pathname: `/movies/:moviesId`,
-//                             state: { from: `${match.path}` },
-//                         }}>
-//                             <h3>{film.title}</h3>
-//                         </Link>
-//                     </li>)}
-//             </ul>
-//             {/* <Link to={{
-//                 pathname: `/movies/cat`,
-//                 state: { from: `${match.path}` },
-//             }}>переход на детальное описание фильма</Link> */}
-//         </div >
-//     );
-// };
-
-// export default MoviesPage;

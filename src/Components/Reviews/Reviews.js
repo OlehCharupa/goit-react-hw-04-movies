@@ -3,14 +3,11 @@ import { movieReviews } from '../../helpers/helpers';
 
 const Reviews = ({ id, ...props }) => {
     const [reviews, setReviews] = useState([])
-    console.log(reviews);
-    // useEffect(() => {
-    //     movieReviews(id).then(data =>
-    //         // console.log(data)
-    //         setReviews(data.data.results)
-    //     )
-
-    // })
+    useEffect(() => {
+        movieReviews(id).then(data =>
+            setReviews(data.data.results)
+        )
+    }, [])
     return (
         <div>
             <h1>Reviews</h1>
