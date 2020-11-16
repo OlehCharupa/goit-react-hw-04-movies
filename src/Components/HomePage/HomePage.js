@@ -20,8 +20,6 @@ class HomePage extends Component {
     render() {
         const { films } = this.state
         const { match } = this.props
-        const { params } = this.props
-        const { location } = this.props
 
         return (
             <div className="container">

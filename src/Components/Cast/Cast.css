@@ -14,7 +14,3 @@
 .cast_item:not(:nth-last-child(9n)) {
   margin-bottom: 15px;
 }
-/* .cast_actor_photo {
-  width: 116px;
-  height: 175px;
-} */

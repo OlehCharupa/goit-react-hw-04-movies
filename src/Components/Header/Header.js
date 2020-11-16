@@ -1,8 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Route, NavLink, Switch } from "react-router-dom"
-import HomePage from "../HomePage/HomePage"
-import MoviesPage from "../MoviesPage/MoviesPage"
+import { NavLink } from "react-router-dom"
 import "./Header.css"
 
 
@@ -17,10 +14,6 @@ const Header = () => {
             </nav>
         </div>
     );
-};
-
-Header.propTypes = {
-
 };
 
 export default Header;

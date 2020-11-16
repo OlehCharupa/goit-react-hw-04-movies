@@ -1,5 +1,5 @@
-import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom"
-import React, { Suspense, lazy } from 'react';
+import { Switch, Route, Redirect } from "react-router-dom"
+import React, { Suspense } from 'react';
 import Header from "./Header/Header"
 import HomePage from "./HomePage/HomePage";
 import MoviesPage from "./MoviesPage/MoviesPage";

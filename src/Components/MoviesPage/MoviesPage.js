@@ -1,6 +1,6 @@
-import React, { useEffect, useState, Component } from 'react';
-import { Link, useLocation, useRouteMatch } from 'react-router-dom';
-import { searchMovies, popularMovies } from '../../helpers/helpers';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { searchMovies } from '../../helpers/helpers';
 import "./MoviesPage.css"
 
 class MoviesPage extends Component {

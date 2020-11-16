@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { movieCredits } from '../../helpers/helpers';
 import "./Cast.css"
-import avatar from "../../images/avatar.png"
 
-const Cast = ({ id, ...props }) => {
+const Cast = ({ id }) => {
     const [actors, setActors] = useState([])
     useEffect(() => {
         movieCredits(id).then(data => {
             setActors(data.data.cast)
         })
-    }, [])
+    }, [id])
     return (
         <div className="cast_box">
             <h1 className="cast_title">Cast</h1>
