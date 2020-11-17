@@ -11,15 +11,12 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Suspense fallback={<Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />}>
-        <Switch >
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/movies" component={MoviesPage} />
-          <Route path="/movies/:moviesId" component={MovieDetailsPage} />
-          <Redirect to="/" />
-        </Switch>
-      </Suspense>
-
+      <Switch >
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/movies" component={MoviesPage} />
+        <Route path="/movies/:moviesId" component={MovieDetailsPage} />
+        <Redirect to="/" />
+      </Switch>
     </div>
   );
 };
